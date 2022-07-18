@@ -39,9 +39,11 @@ namespace BMWCell
                 }
             }
             printer.printPickList(palletList);
+            Warehouse.savePickingListInWarehouse(palletList);
             givenPalletList.Text = "";
             
         }
+        
 
         private void buttonFindPallet_Click(object sender, EventArgs e)
         {
@@ -52,5 +54,9 @@ namespace BMWCell
             palletToFind.Text = "";
         }
 
+        private void buttonReleasePallets_Click(object sender, EventArgs e)
+        {
+            Warehouse.releasePalletsFromWarehouse();
+        }
     }
 }

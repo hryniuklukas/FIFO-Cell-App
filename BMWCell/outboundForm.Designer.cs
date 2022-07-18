@@ -38,6 +38,7 @@ namespace BMWCell
             this.labelRow = new System.Windows.Forms.Label();
             this.labelLine = new System.Windows.Forms.Label();
             this.labelPalletID = new System.Windows.Forms.Label();
+            this.buttonReleasePallets = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // givenPalletList
@@ -74,7 +75,7 @@ namespace BMWCell
             // palletToFind
             // 
             this.palletToFind.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.palletToFind.Location = new System.Drawing.Point(54, 412);
+            this.palletToFind.Location = new System.Drawing.Point(54, 466);
             this.palletToFind.Name = "palletToFind";
             this.palletToFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.palletToFind.Size = new System.Drawing.Size(680, 29);
@@ -84,7 +85,7 @@ namespace BMWCell
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(54, 381);
+            this.label1.Location = new System.Drawing.Point(54, 435);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(272, 28);
             this.label1.TabIndex = 4;
@@ -93,7 +94,7 @@ namespace BMWCell
             // buttonFindPallet
             // 
             this.buttonFindPallet.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonFindPallet.Location = new System.Drawing.Point(54, 447);
+            this.buttonFindPallet.Location = new System.Drawing.Point(54, 501);
             this.buttonFindPallet.Name = "buttonFindPallet";
             this.buttonFindPallet.Size = new System.Drawing.Size(680, 82);
             this.buttonFindPallet.TabIndex = 5;
@@ -105,7 +106,7 @@ namespace BMWCell
             // 
             this.labelRow.AutoSize = true;
             this.labelRow.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelRow.Location = new System.Drawing.Point(54, 549);
+            this.labelRow.Location = new System.Drawing.Point(54, 603);
             this.labelRow.Name = "labelRow";
             this.labelRow.Size = new System.Drawing.Size(62, 25);
             this.labelRow.TabIndex = 6;
@@ -115,7 +116,7 @@ namespace BMWCell
             // 
             this.labelLine.AutoSize = true;
             this.labelLine.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelLine.Location = new System.Drawing.Point(167, 549);
+            this.labelLine.Location = new System.Drawing.Point(167, 603);
             this.labelLine.Name = "labelLine";
             this.labelLine.Size = new System.Drawing.Size(84, 25);
             this.labelLine.TabIndex = 7;
@@ -125,17 +126,29 @@ namespace BMWCell
             // 
             this.labelPalletID.AutoSize = true;
             this.labelPalletID.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPalletID.Location = new System.Drawing.Point(445, 549);
+            this.labelPalletID.Location = new System.Drawing.Point(445, 603);
             this.labelPalletID.Name = "labelPalletID";
             this.labelPalletID.Size = new System.Drawing.Size(77, 25);
             this.labelPalletID.TabIndex = 8;
             this.labelPalletID.Text = "Paleta:  ";
             // 
+            // buttonReleasePallets
+            // 
+            this.buttonReleasePallets.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonReleasePallets.Location = new System.Drawing.Point(54, 357);
+            this.buttonReleasePallets.Name = "buttonReleasePallets";
+            this.buttonReleasePallets.Size = new System.Drawing.Size(680, 64);
+            this.buttonReleasePallets.TabIndex = 9;
+            this.buttonReleasePallets.Text = "WYDAJ PALETY Z PICKLISTY";
+            this.buttonReleasePallets.UseVisualStyleBackColor = true;
+            this.buttonReleasePallets.Click += new System.EventHandler(this.buttonReleasePallets_Click);
+            // 
             // outboundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 621);
+            this.ClientSize = new System.Drawing.Size(800, 637);
+            this.Controls.Add(this.buttonReleasePallets);
             this.Controls.Add(this.labelPalletID);
             this.Controls.Add(this.labelLine);
             this.Controls.Add(this.labelRow);
@@ -163,5 +176,6 @@ namespace BMWCell
         private System.Windows.Forms.Label labelRow;
         private System.Windows.Forms.Label labelLine;
         private System.Windows.Forms.Label labelPalletID;
+        private System.Windows.Forms.Button buttonReleasePallets;
     }
 }

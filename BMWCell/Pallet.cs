@@ -32,5 +32,17 @@ namespace BMWCell
         public override String ToString() {
             return palletID + " ; " + palletDate.ToString();
         }
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                Pallet p = (Pallet)obj;
+                return (this.palletID == p.palletID);
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace BMWCell
     { 
         static int rows = 6;
         static int lines = 30;
+        public static List<Pallet> lastPickingList { get; set; }
         public static Pallet[,] palletSpaces { get; set; }
         public static string comm { get; set; }
         static Warehouse() 
@@ -74,6 +75,28 @@ namespace BMWCell
             return null;
 
         }
+        public static void releasePalletsFromWarehouse() 
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < lines; j++)
+                {
+                    if (palletSpaces[i, j] != null)
+                    {
+                        if (lastPickingList.Contains(palletSpaces[i, j]))
+                        {
+                            palletSpaces[i, j] = null;
+                        }
+                    }
+                }
+            }
+            lastPickingList = null;
+        }
+        public static void savePickingListInWarehouse(List<Pallet> pickingList) 
+        {
+            lastPickingList = pickingList;
+        }
+
         private static string jsonSerializeWarehouse() 
         {
             return JsonConvert.SerializeObject(palletSpaces);
