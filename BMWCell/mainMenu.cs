@@ -19,6 +19,7 @@ namespace BMWCell
             InitializeComponent();
             infrm1 = new inboundForm();
             outfrm1 = new outboundForm();
+            Warehouse.jsonDeserializeWarehouse();
         }
         private void inboundButton_Click(object sender, System.EventArgs e) 
         {
@@ -30,7 +31,6 @@ namespace BMWCell
         {
             //MessageBox.Show("Outbound klik");
             outfrm1.ShowDialog();
-            
         }
 
 

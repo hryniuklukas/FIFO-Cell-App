@@ -29,21 +29,23 @@ namespace BMWCell
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.palletIDText = new System.Windows.Forms.TextBox();
             this.palletDateTime = new System.Windows.Forms.DateTimePicker();
             this.labelPallet = new System.Windows.Forms.Label();
             this.labelDate = new System.Windows.Forms.Label();
-            this.labelPalletSpace = new System.Windows.Forms.Label();
-            this.displayPalletSpace = new System.Windows.Forms.Label();
-            this.buttonFindPalletSpace = new System.Windows.Forms.Button();
+            this.labelComm = new System.Windows.Forms.Label();
             this.buttonSavePallet = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // palletIDText
             // 
-            this.palletIDText.Location = new System.Drawing.Point(27, 187);
+            this.palletIDText.Location = new System.Drawing.Point(154, 190);
             this.palletIDText.Name = "palletIDText";
-            this.palletIDText.Size = new System.Drawing.Size(805, 23);
+            this.palletIDText.Size = new System.Drawing.Size(678, 23);
             this.palletIDText.TabIndex = 0;
             // 
             // palletDateTime
@@ -59,11 +61,11 @@ namespace BMWCell
             // 
             this.labelPallet.AutoSize = true;
             this.labelPallet.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPallet.Location = new System.Drawing.Point(27, 142);
+            this.labelPallet.Location = new System.Drawing.Point(27, 182);
             this.labelPallet.Name = "labelPallet";
-            this.labelPallet.Size = new System.Drawing.Size(83, 28);
+            this.labelPallet.Size = new System.Drawing.Size(87, 28);
             this.labelPallet.TabIndex = 2;
-            this.labelPallet.Text = "Pallet ID";
+            this.labelPallet.Text = "Pallet ID:";
             // 
             // labelDate
             // 
@@ -71,61 +73,62 @@ namespace BMWCell
             this.labelDate.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelDate.Location = new System.Drawing.Point(27, 90);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(150, 28);
+            this.labelDate.Size = new System.Drawing.Size(135, 28);
             this.labelDate.TabIndex = 3;
-            this.labelDate.Text = "Data paletyzacji";
+            this.labelDate.Text = "Data dostawy:";
             // 
-            // labelPalletSpace
+            // labelComm
             // 
-            this.labelPalletSpace.AutoSize = true;
-            this.labelPalletSpace.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPalletSpace.Location = new System.Drawing.Point(27, 403);
-            this.labelPalletSpace.Name = "labelPalletSpace";
-            this.labelPalletSpace.Size = new System.Drawing.Size(390, 54);
-            this.labelPalletSpace.TabIndex = 4;
-            this.labelPalletSpace.Text = "MIEJSCE PALETOWE: ";
-            // 
-            // displayPalletSpace
-            // 
-            this.displayPalletSpace.AutoSize = true;
-            this.displayPalletSpace.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.displayPalletSpace.Location = new System.Drawing.Point(516, 403);
-            this.displayPalletSpace.Name = "displayPalletSpace";
-            this.displayPalletSpace.Size = new System.Drawing.Size(77, 54);
-            this.displayPalletSpace.TabIndex = 5;
-            this.displayPalletSpace.Text = "<>";
-            // 
-            // buttonFindPalletSpace
-            // 
-            this.buttonFindPalletSpace.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonFindPalletSpace.Location = new System.Drawing.Point(69, 238);
-            this.buttonFindPalletSpace.Name = "buttonFindPalletSpace";
-            this.buttonFindPalletSpace.Size = new System.Drawing.Size(720, 131);
-            this.buttonFindPalletSpace.TabIndex = 6;
-            this.buttonFindPalletSpace.Text = "WSKAŻ MIEJSCE PALETOWE";
-            this.buttonFindPalletSpace.UseVisualStyleBackColor = true;
-            this.buttonFindPalletSpace.Click += new System.EventHandler(this.buttonFindPalletSpace_Click);
+            this.labelComm.AutoSize = true;
+            this.labelComm.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelComm.Location = new System.Drawing.Point(27, 507);
+            this.labelComm.Name = "labelComm";
+            this.labelComm.Size = new System.Drawing.Size(77, 54);
+            this.labelComm.TabIndex = 5;
+            this.labelComm.Text = "<>";
             // 
             // buttonSavePallet
             // 
             this.buttonSavePallet.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonSavePallet.Location = new System.Drawing.Point(69, 476);
+            this.buttonSavePallet.Location = new System.Drawing.Point(27, 285);
             this.buttonSavePallet.Name = "buttonSavePallet";
-            this.buttonSavePallet.Size = new System.Drawing.Size(720, 131);
+            this.buttonSavePallet.Size = new System.Drawing.Size(805, 178);
             this.buttonSavePallet.TabIndex = 7;
             this.buttonSavePallet.Text = "ZAPISZ PALETĘ W MAGAZYNIE";
             this.buttonSavePallet.UseVisualStyleBackColor = true;
             this.buttonSavePallet.Click += new System.EventHandler(this.buttonSavePallet_Click);
             // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 500;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(154, 239);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(133, 23);
+            this.textBox1.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(27, 234);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 28);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Lokalizacja:";
+            // 
             // inboundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 640);
+            this.ClientSize = new System.Drawing.Size(867, 595);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonSavePallet);
-            this.Controls.Add(this.buttonFindPalletSpace);
-            this.Controls.Add(this.displayPalletSpace);
-            this.Controls.Add(this.labelPalletSpace);
+            this.Controls.Add(this.labelComm);
             this.Controls.Add(this.labelDate);
             this.Controls.Add(this.labelPallet);
             this.Controls.Add(this.palletDateTime);
@@ -143,9 +146,10 @@ namespace BMWCell
         private System.Windows.Forms.DateTimePicker palletDateTime;
         private System.Windows.Forms.Label labelPallet;
         private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.Label labelPalletSpace;
-        private System.Windows.Forms.Label displayPalletSpace;
-        private System.Windows.Forms.Button buttonFindPalletSpace;
+        private System.Windows.Forms.Label labelComm;
         private System.Windows.Forms.Button buttonSavePallet;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

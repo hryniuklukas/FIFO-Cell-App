@@ -19,7 +19,18 @@ namespace BMWCell
 
         private void buttonPreparePalletList_Click(object sender, EventArgs e)
         {
-            givenPalletList.Text = Warehouse.prepareList(givenPalletList.Text);
+            
         }
+
+
+        private void buttonFindPallet_Click(object sender, EventArgs e)
+        {
+            int[] position = Warehouse.findPallet(new Pallet(palletToFind.Text));
+            labelRow.Text = "Rząd: " + position[0].ToString();
+            labelLine.Text = "Pozycja: " + position[1].ToString();
+            labelPalletID.Text = palletToFind.Text;
+            palletToFind.Text = "";
+        }
+
     }
 }

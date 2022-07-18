@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace BMWCell
 {
@@ -11,135 +12,66 @@ namespace BMWCell
     {
         static string readSerial;
         
-        static bool warehouseExists = false;
         static int rows = 6;
         static int lines = 30;
-        static string[,,] palletSpaces;
+        static Pallet[,] palletSpaces { get; set; }
+        public static string comm { get; set; }
         static Warehouse() 
         {
-            palletSpaces = new string[rows,lines,2];
-            initializePalletSpaces();
-        }
-        private static void initializePalletSpaces() 
-        {
-            
-            if (warehouseExists)
-            {
-
-            }
-            else 
-            {
-                for (int i = 0; i < rows; i++) 
-                {
-                    for (int j = 0; j < lines; j++) 
-                    {
-                        palletSpaces[i,j,0] = "";
-                        palletSpaces[i,j,1] = "";                    
-                    }
-                }
-                warehouseExists = true;
-            }
+            palletSpaces = new Pallet[rows,lines];
         }
 
-        public static string findPalletSpace() 
-        {
-            int i = 0;
-            int j = 0;
-            for (i = 0; i < rows; i++)
+        public static void savePallet(Pallet pallet, int row, int line) {
+            if (palletSpaces[row, line] == null)
             {
-                for (j = 0; j < lines; j++)
+                palletSpaces[row, line] = pallet;
+                comm += pallet + "DODANO PALETĘ";
+            }
+            else {
+                comm += "MIEJSCE ZAJĘTE!" + palletSpaces[row, line];
+            }
+            saveWarehouseState();
+        }
+
+        public static void removePallet(int row, int line) {
+            palletSpaces[row, line] = null;
+        }
+
+
+        public static int[] findPallet(Pallet pallet) 
+        {
+            int[] position = {0, 0};
+            for (int i = 0; i <= rows; i++) 
+            {
+                for (int j = 0; j <= lines; j++) 
                 {
-                    if (palletSpaces[i,j,0] == "")
+                    if (palletSpaces[i, j].palletID == pallet.palletID) 
                     {
-                        return (i+1).ToString() + "." + (j+1).ToString();
+                        position[0] = i+1;
+                        position[1] = j+1;
+                        return position;
                     }
                 }
             }
-            return "MAGAZYN PEŁEN";
+            return position;
         }
-        public static string savePallet(string date, string pID) 
+        private static string jsonSerializeWarehouse() 
         {
-            if (findPalletSpace() == "MAGAZYN PEŁEN")
-            {
-                return "MAGAZYN PEŁEN";
-            }
-            else
-            {
-                string[] position = findPalletSpace().Split(".");
-                int i = Convert.ToInt32(position[0]) - 1;
-                int j = Convert.ToInt32(position[1]) - 1;
-                palletSpaces[i, j, 0] = date;
-                palletSpaces[i, j, 1] = pID;
-                return "ZAPISANO: " + position[0].ToString() + "." + position[1].ToString();
-            }
+            return JsonConvert.SerializeObject(palletSpaces);
         }
 
-        public static string findPosition(string palletID) 
+        public static void jsonDeserializeWarehouse() 
         {
-            
-
-            for (int i = 0; i < rows; i++)
+            string fileName = "warehouseState.json";
+            if (File.Exists(fileName))
             {
-                for (int j = 0; j < lines; j++)
-                {
-                    if (palletSpaces[i, j, 1] == palletID)
-                    {
-                        return (i + 1).ToString() + "." + (j + 1).ToString();
-                    }
-                }
+                palletSpaces = JsonConvert.DeserializeObject<Pallet[,]>(File.ReadAllText(fileName));
             }
-            return "BRAK PALETY";
-        }
-        public static string prepareList(string givenList) 
-        {
-            string pickList = "";
-            string[] givenArray = givenList.Split("\n");
-            List<string> palletList = new List<string>();
-
-            foreach (string l in givenArray) 
-            {
-                palletList.Add(l.TrimEnd(new char[] { '\r', '\n' }));
-            }
-            List<string> positionList = new List<string>();
-            
-            
-            foreach (string e in palletList) 
-            {
-                positionList.Add(findPosition(e));
-            }
-
-            for (int i = 0; i < palletList.Count(); i++) 
-            {
-                pickList = pickList + palletList[i] + " -> " + positionList[i] + "\n";
-            }
-
-            return pickList;
-        }
-        private static string serializeWarehouse() 
-        {
-            string serial = "";
-            for (int i = 0; i < rows; i++) 
-            {
-                for (int j = 0; j < lines; j++) 
-                {
-                    serial = serial + palletSpaces[i,j,0] + ";" + palletSpaces[i,j,1] + "\n";
-                }
-            }
-            return serial;
-        }
-
-        private static void deserializeWarehouse() 
-        {
-            readSerial = File.ReadAllText("warehousestate.txt");
-            string[] rowSplit = readSerial.Split("\n");
-            foreach (string e in rowSplit) 
-            {
-                string[] lineSplit = e.Split(";");
-            } 
         }
         public static async void saveWarehouseState() 
         {
-            await File.WriteAllTextAsync("warehousestate.txt", serializeWarehouse());
+            string fileName = "warehouseState.json";
+            await File.WriteAllTextAsync(fileName, jsonSerializeWarehouse());
         }
     }
 }

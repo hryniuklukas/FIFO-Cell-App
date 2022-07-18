@@ -16,15 +16,19 @@ namespace BMWCell
         {
             InitializeComponent();
         }
-
+        public void refreshForm() 
+        {
+            labelComm.Text = Warehouse.comm;
+        }
         private void buttonFindPalletSpace_Click(object sender, EventArgs e)
         {
-            displayPalletSpace.Text = Warehouse.findPalletSpace();
+            //displayPalletSpace.Text = Warehouse.findPalletSpace();
         }
 
         private void buttonSavePallet_Click(object sender, EventArgs e)
         {
-            displayPalletSpace.Text = Warehouse.savePallet(palletDateTime.ToString(), palletIDText.Text);
+            Warehouse.savePallet(new Pallet(palletIDText.Text, palletDateTime.Value.Date), 0, 0);
+            refreshForm();
             Warehouse.saveWarehouseState();
         }
     }
