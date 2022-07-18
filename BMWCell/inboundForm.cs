@@ -27,9 +27,13 @@ namespace BMWCell
 
         private void buttonSavePallet_Click(object sender, EventArgs e)
         {
-            Warehouse.savePallet(new Pallet(palletIDText.Text, palletDateTime.Value.Date), 0, 0);
+            int row;
+            int line;
+            string[] location = locationTextBox.Text.Split(".");
+            row = Int32.Parse(location[0]);
+            line = Int32.Parse(location[1]);
+            Warehouse.savePallet(new Pallet(palletIDText.Text, palletDateTime.Value.Date), row, line);
             refreshForm();
-            Warehouse.saveWarehouseState();
         }
     }
 }

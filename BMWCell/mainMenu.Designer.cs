@@ -31,11 +31,12 @@ namespace BMWCell
         {
             this.inboundButton = new System.Windows.Forms.Button();
             this.outboundButton = new System.Windows.Forms.Button();
+            this.buttonGenerateWarehouseReport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // inboundButton
             // 
-            this.inboundButton.Location = new System.Drawing.Point(63, 238);
+            this.inboundButton.Location = new System.Drawing.Point(74, 44);
             this.inboundButton.Name = "inboundButton";
             this.inboundButton.Size = new System.Drawing.Size(355, 301);
             this.inboundButton.TabIndex = 0;
@@ -45,7 +46,7 @@ namespace BMWCell
             // 
             // outboundButton
             // 
-            this.outboundButton.Location = new System.Drawing.Point(512, 238);
+            this.outboundButton.Location = new System.Drawing.Point(523, 44);
             this.outboundButton.Name = "outboundButton";
             this.outboundButton.Size = new System.Drawing.Size(355, 301);
             this.outboundButton.TabIndex = 1;
@@ -53,11 +54,22 @@ namespace BMWCell
             this.outboundButton.UseVisualStyleBackColor = true;
             this.outboundButton.Click += new System.EventHandler(this.outboundButton_Click);
             // 
+            // buttonGenerateWarehouseReport
+            // 
+            this.buttonGenerateWarehouseReport.Location = new System.Drawing.Point(74, 409);
+            this.buttonGenerateWarehouseReport.Name = "buttonGenerateWarehouseReport";
+            this.buttonGenerateWarehouseReport.Size = new System.Drawing.Size(274, 103);
+            this.buttonGenerateWarehouseReport.TabIndex = 2;
+            this.buttonGenerateWarehouseReport.Text = "RAPORT STANU MAGAZYNU";
+            this.buttonGenerateWarehouseReport.UseVisualStyleBackColor = true;
+            this.buttonGenerateWarehouseReport.Click += new System.EventHandler(this.buttonGenerateWarehouseReport_Click);
+            // 
             // mainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 685);
+            this.Controls.Add(this.buttonGenerateWarehouseReport);
             this.Controls.Add(this.outboundButton);
             this.Controls.Add(this.inboundButton);
             this.Name = "mainMenu";
@@ -70,6 +82,7 @@ namespace BMWCell
 
         private System.Windows.Forms.Button inboundButton;
         private System.Windows.Forms.Button outboundButton;
+        private System.Windows.Forms.Button buttonGenerateWarehouseReport;
     }
 }
 

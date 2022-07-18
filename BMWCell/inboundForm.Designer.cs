@@ -37,7 +37,7 @@ namespace BMWCell
             this.labelComm = new System.Windows.Forms.Label();
             this.buttonSavePallet = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.locationTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -103,12 +103,12 @@ namespace BMWCell
             this.timer.Enabled = true;
             this.timer.Interval = 500;
             // 
-            // textBox1
+            // locationTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(154, 239);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(133, 23);
-            this.textBox1.TabIndex = 8;
+            this.locationTextBox.Location = new System.Drawing.Point(154, 239);
+            this.locationTextBox.Name = "locationTextBox";
+            this.locationTextBox.Size = new System.Drawing.Size(133, 23);
+            this.locationTextBox.TabIndex = 8;
             // 
             // label1
             // 
@@ -126,7 +126,7 @@ namespace BMWCell
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(867, 595);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.locationTextBox);
             this.Controls.Add(this.buttonSavePallet);
             this.Controls.Add(this.labelComm);
             this.Controls.Add(this.labelDate);
@@ -149,7 +149,7 @@ namespace BMWCell
         private System.Windows.Forms.Label labelComm;
         private System.Windows.Forms.Button buttonSavePallet;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox locationTextBox;
         private System.Windows.Forms.Label label1;
     }
 }

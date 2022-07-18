@@ -9,12 +9,10 @@ using Newtonsoft.Json;
 namespace BMWCell
 {
     static class Warehouse
-    {
-        static string readSerial;
-        
+    { 
         static int rows = 6;
         static int lines = 30;
-        static Pallet[,] palletSpaces { get; set; }
+        public static Pallet[,] palletSpaces { get; set; }
         public static string comm { get; set; }
         static Warehouse() 
         {
@@ -22,10 +20,10 @@ namespace BMWCell
         }
 
         public static void savePallet(Pallet pallet, int row, int line) {
-            if (palletSpaces[row, line] == null)
+            if (palletSpaces[row-1, line-1] == null)
             {
-                palletSpaces[row, line] = pallet;
-                comm += pallet + "DODANO PALETĘ";
+                palletSpaces[row-1, line-1] = pallet;
+                comm += pallet.getPalletID() + "DODANO PALETĘ";
             }
             else {
                 comm += "MIEJSCE ZAJĘTE!" + palletSpaces[row, line];
@@ -34,26 +32,47 @@ namespace BMWCell
         }
 
         public static void removePallet(int row, int line) {
-            palletSpaces[row, line] = null;
+            palletSpaces[row-1, line-1] = null;
         }
 
 
         public static int[] findPallet(Pallet pallet) 
         {
             int[] position = {0, 0};
-            for (int i = 0; i <= rows; i++) 
+            for (int i = 0; i < rows; i++) 
             {
-                for (int j = 0; j <= lines; j++) 
+                for (int j = 0; j < lines; j++) 
                 {
-                    if (palletSpaces[i, j].palletID == pallet.palletID) 
+                    if (palletSpaces[i, j] != null)
                     {
-                        position[0] = i+1;
-                        position[1] = j+1;
-                        return position;
+                        if (palletSpaces[i, j].palletID == pallet.palletID)
+                        {
+                            position[0] = i + 1;
+                            position[1] = j + 1;
+                            return position;
+                        }
                     }
                 }
             }
             return position;
+        }
+        public static Pallet findAndReturnPalletObjectByID(string palletID) 
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < lines; j++)
+                {
+                    if (palletSpaces[i, j] != null)
+                    {
+                        if (palletSpaces[i, j].palletID == palletID)
+                        {
+                            return palletSpaces[i, j];
+                        }
+                    }
+                }
+            }
+            return null;
+
         }
         private static string jsonSerializeWarehouse() 
         {

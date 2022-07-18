@@ -33,6 +33,10 @@ namespace BMWCell
             outfrm1.ShowDialog();
         }
 
-
+        private void buttonGenerateWarehouseReport_Click(object sender, EventArgs e)
+        {
+            documentPrinter printer = new documentPrinter();
+            printer.printWholeStock();
+        }
     }
 }

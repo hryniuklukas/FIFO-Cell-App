@@ -19,9 +19,29 @@ namespace BMWCell
 
         private void buttonPreparePalletList_Click(object sender, EventArgs e)
         {
+            documentPrinter printer = new documentPrinter();
+            List<string> givenList = new List<string>();
+            List<Pallet> palletList = new List<Pallet>();
+            givenPalletList.Text = givenPalletList.Text.TrimEnd();
+            foreach (string element in new List<string>(givenPalletList.Text.Split("\r"))) 
+            {
+                givenList.Add(element.Trim());
+            }
+            foreach (string palletID in givenList) 
+            {
+                if (Warehouse.findAndReturnPalletObjectByID(palletID) != null)
+                {
+                    palletList.Add(Warehouse.findAndReturnPalletObjectByID(palletID));
+                }
+                else 
+                {
+                    palletList.Add(new Pallet(palletID));
+                }
+            }
+            printer.printPickList(palletList);
+            givenPalletList.Text = "";
             
         }
-
 
         private void buttonFindPallet_Click(object sender, EventArgs e)
         {
