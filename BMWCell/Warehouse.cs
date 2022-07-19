@@ -115,5 +115,28 @@ namespace BMWCell
             string fileName = "warehouseState.json";
             await File.WriteAllTextAsync(fileName, jsonSerializeWarehouse());
         }
+
+        /*public static List<Pallet> getOldestPallets(int amount) 
+        {
+            Pallet[,] temp = palletSpaces;
+            DateTime oldestDate = DateTime.Now.Date;
+            List<Pallet> returnList = new List<Pallet>()
+            for (int k = 0; k < amount; k++)
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < lines; j++)
+                    {
+                        if (temp[i, j] != null)
+                        {
+                            if (temp[i, j].getPalletDate().CompareTo(oldestDate) < 0)
+                            {
+                                oldestDate = temp[i, j].getPalletDate();
+                            }
+                        }
+                    }
+                }
+            }
+        }*/
     }
 }

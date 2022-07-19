@@ -58,5 +58,10 @@ namespace BMWCell
         {
             Warehouse.releasePalletsFromWarehouse();
         }
+
+        private void buttonFifoPicklist_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

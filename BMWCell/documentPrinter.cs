@@ -51,7 +51,7 @@ namespace BMWCell
             ws.Column(1).AutoFit();
             ws.Column(2).AutoFit();
             ws.Column(3).AutoFit();
-            FileInfo fi = new FileInfo("TotalStock.xlsx");
+            FileInfo fi = new FileInfo("Reports/TotalStock.xlsx");
             package.SaveAs(fi);
         }
         public void printPickList(List<Pallet> palletList) 
@@ -79,7 +79,7 @@ namespace BMWCell
                 }
                 k++;
             }
-            FileInfo fi = new FileInfo("PickingList_"+ DateTime.Now.Date.ToString().Replace(":","_") + ".xlsx");
+            FileInfo fi = new FileInfo("Reports/PickingList_"+ DateTime.Now.Date.ToString().Replace(":","_") + ".xlsx");
             package.SaveAs(fi);
         }
 
